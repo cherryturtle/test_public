@@ -128,8 +128,10 @@ function updateGame(timestamp) {
             scoreElement.textContent = `점수: ${score}`;
             
             // 점수에 따라 게임 속도 증가
-            if (score % 10 === 0 && gameSpeed > 500) {
-                gameSpeed -= 100;
+            if (score % 2 === 0 && gameSpeed > 300) {
+                gameSpeed = Math.max(300, gameSpeed - 150);
+                clearInterval(poopInterval);
+                poopInterval = setInterval(createPoop, gameSpeed);
             }
         }
         
